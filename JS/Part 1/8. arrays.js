@@ -91,4 +91,42 @@ console.log(nombres); // ["Peter", "Anne", "Thomas", "Jen", "Rob", "Alison"] -> 
 
 let ordenarNum = [20, 6, 100, 51, 28, 9];
 console.log(ordenarNum.toSorted());
+a.sort((n1, n2) => n1 - n2); // Trabajando con números, podemos devolver la resta
+console.log(a); // Imprime [6, 9, 20, 28, 51, 100]
 
+/**** Ejemplo con objetos, que veremos más adelante ****/
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  toString() { 
+    return this.name + " (" + this.age + ")";
+  }
+}
+
+let people = [
+  new Person("Thomas", 24),
+  new Person("Mary", 15),
+  new Person("John", 51),
+  new Person("Phillip", 9)
+];
+
+people.sort((p1, p2) => p1.age - p2.age); // Ordenamos por edad número
+console.log(people.toString()); // "Phillip (9),Mary (15),Thomas (24),John (51)"
+
+people.sort((p1, p2) => p1.name.localeCompare(p2.name)); // Ordenamos por nombre (string)
+console.log(people.toString()); // "John (51),Mary (15),Phillip (9),Thomas (24)"
+
+
+let  a11 = [1, 2, 3, 4];
+let a2 = a11.with(2, 99); // En lugar de hacer a[2] = 99
+console.log(a11); // [1, 2, 3, 4] -> Original
+console.log(a2); // [1, 2, 99, 4] -> Nuevo array con el cambio
+
+a = [4, 21, 33, 12, 9, 54];
+console.log(a.map(num => num*2)); // Imprime [8, 42, 66, 24, 18, 108]
+console.log(a);
+a = [-2, -4, -7];
+console.log(a.reduce((max, num) => Math.max(max, num)));

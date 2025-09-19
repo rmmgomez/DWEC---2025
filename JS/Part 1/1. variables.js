@@ -1,4 +1,5 @@
 "use strict";
+
 let v1 = "Hola Mundo!";
 console.log(typeof v1); // Imprime -> string
 
@@ -13,4 +14,4 @@ console.log(typeof v2); // Imprime -> undefined
 
 // v4 = "Hola"; // ReferenceError: v4 is not defined
 const myConst=10;
-myConst=200; // Uncaught TypeError: Assignment to constant variable.
+// myConst=200; // Uncaught TypeError: Assignment to constant variable.

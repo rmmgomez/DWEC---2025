@@ -1,11 +1,17 @@
 "use strict";
 sayHello("Tom"); // "Hello Tom"
+sayHello();
 /* sayHello("Pepe", ,2); */
 
 function sayHello(name = "Guest") {
     console.log("Hello " + name);
 }
-function sayHello(name = "Guest", edad = 18, altura = 1.84) {
+sayHello33("");
+function sayHello33(name) {
+    name = name ?? "Guest";
+    console.log("Helloaaaa " + name);
+}
+function sayHello2(name = "Guest", edad = 18, altura = 1.84) {
     console.log("Hello " + name + "con edad " + edad + " y altura " + altura);
 }
 
