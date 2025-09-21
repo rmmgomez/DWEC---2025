@@ -30,14 +30,7 @@ console.log("---- Ejercicio 3 ----");
 // Devuelveme un array con las palabras que tengan más de 2 vocales, que contengan la letra r
 // y que tengan más de 4 letras, el array deberá estar ordenado por longitud de palabra y en mayúsculas
 let words = ["house", "tree", "dog", "computer", "sun", "river", "mountain", "JavaScript"];
-let filteredWords = words
-    .filter(word => (word.match(/[aeiou]/gi) || []).length > 2) // Más de 2 vocales
-    .filter(word => word.includes('r')) // Contienen la letra 'r'
-    .filter(word => word.length > 4) // Más de 4 letras
-    .sort((a, b) => a.length - b.length) // Ordenadas por longitud
-    .map(word => word.toUpperCase()); // En mayúsculas
 
-console.log(filteredWords); // ['COMPUTER', 'JAVASCRIPT']
 
 console.log("---- Ejercicio 4 ----");
 // Devuelve aquellos elementos del array que sean múltiplos de 3 o de 5, que no sean múltiplos de 2
@@ -68,8 +61,8 @@ console.log("---- Ejercicio 9 ----");
 /**
  * Crea una función llamada generarInforme que acepte un titulo, una fecha y un número variable de items (elementos).
  */
-generarInforme("Informe Trimestral", "2024-03-31", "Ventas", "Gastos", "Inventario");
-generarInforme("Ventas Mensuales", "2024-06-15", "Producto A", "Producto B", "Producto C");
+// generarInforme("Informe Trimestral", "2024-03-31", "Ventas", "Gastos", "Inventario");
+// generarInforme("Ventas Mensuales", "2024-06-15", "Producto A", "Producto B", "Producto C");
 
 console.log("---- Ejercicio 10 ----");
 /**
@@ -86,10 +79,10 @@ const usuarios = [
 ];
 
 
-const datosAna = obtenerDatosUsuario(usuarios, 'Ana');
+/* const datosAna = obtenerDatosUsuario(usuarios, 'Ana');
 console.log(datosAna);
 const datosJuan = obtenerDatosUsuario(usuarios, 'Juan');
-console.log(datosJuan); // Salida: null
+console.log(datosJuan); // Salida: null */
 
 /***
  * Imagina que estás gestionando los roles de usuario en un proyecto. Tienes dos equipos, 
