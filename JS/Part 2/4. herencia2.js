@@ -36,7 +36,7 @@ class Automovil extends Vehiculo {
     }
 
     toString() {
-        console.log(`Es un ${this.marca} ${this.#modelo} del año ${this.año}. Tiene ${this.#numeroDePuertas} puertas y un motor de ${this.#tipoMotor}.`);
+        console.log(`Es un ${this.marca} ${this.#modelo} del año ${this.getAño()}. Tiene ${this.#numeroDePuertas} puertas y un motor de ${this.#tipoMotor}.`);
     }
 
     encender() {
@@ -46,9 +46,9 @@ class Automovil extends Vehiculo {
 }
 
 const miAuto = new Automovil('Toyota', 2023, 'rojo', 'Corolla', 4, 'gasolina');
-miAuto.mostrarDetalles();
+/* miAuto.mostrarDetalles(); */
 miAuto.toString();
-miAuto.encender();
+/* miAuto.encender();
 console.log(`Marca: ${miAuto.marca}`);
 console.log(`Modelo: ${miAuto.modelo}`);
-console.log(`Color: ${miAuto.color}`);
+console.log(`Color: ${miAuto.color}`); */
