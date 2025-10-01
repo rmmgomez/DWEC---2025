@@ -14,7 +14,7 @@ console.log(formatter3.format(a)); // perro, gato, pez, loro
 
 
 let numero = 45.6;
-console.log(new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(numero));
+console.log(new Intl.NumberFormat('en-US').format(numero));
 
 let date = new Date('2022-04-25');
 console.log(new Intl.DateTimeFormat('es-ES', {

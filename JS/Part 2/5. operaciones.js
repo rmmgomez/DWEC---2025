@@ -36,5 +36,8 @@ const coche = {
    // }
 };
 
-const cilindros = coche?.motor?.ruedas ?? "No hay ruedas";
-console.log(cilindros); // undefined (no hay error)
+const ejemplo = [1,2,3,4,5];
+ejemplo[8] = 23;
+console.log(ejemplo[24]?.toString() ?? "Hola");
+/* const cilindros = coche?.motor?.ruedas ?? "No hay ruedas";
+console.log(cilindros); // undefined (no hay error) */
