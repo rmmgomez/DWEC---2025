@@ -1,8 +1,3 @@
-const miFormulario = document.getElementById('saludoForm');
-const campoNombre = document.getElementById('nombre');
-const parrafoMensaje = document.getElementById('mensaje');
-const checkboxTerminos = document.getElementById('terminos');
-const botonEnviar = document.getElementById('enviarBtn');
 
 /** El evento input lo implementaremos a posteriori, para validar el formulario */
 
