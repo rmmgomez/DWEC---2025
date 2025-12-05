@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, linkedSignal, model } from '@angular/core';
 
 @Component({
   selector: 'star-rating',
@@ -8,5 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StarRating {
-
+ rating = model.required<number>();
+ auxRating = linkedSignal(() => this.rating());
 }
