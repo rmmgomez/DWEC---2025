@@ -1,15 +1,15 @@
 import { Directive, effect, ElementRef, inject, input, signal } from '@angular/core';
 
 @Directive({
-  selector: '[setColor]',
+  selector: '[setColorDirective]',
   host: {
     '[style.backgroundColor]': 'color()',
     '[style.color]': 'textColor()',
     '(click)': 'toggleTextColor()',
   },
 })
-export class SetColor {
-  color = input.required<string>({ alias: 'setColor' });
+export class SetColorDirective {
+  color = input.required<string>({ alias: 'setColorDirective' });
   textColor = signal('black');
 
   toggleTextColor() {
