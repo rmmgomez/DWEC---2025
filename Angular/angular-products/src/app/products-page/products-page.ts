@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { FormsModule } from '@angular/forms';
 import { ProductItem } from '../product-item/product-item';
@@ -16,10 +16,18 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class ProductsPage {
   title = 'Tabla de productos';
   search = signal('');
-  #productsService = inject(ProductsService);
-  products = signal<Product[]>([]);
   showImage = signal(true);
-  fileName = '';
+  
+  #productsService = inject(ProductsService);
+  productsResource = this.#productsService.getProductsResource(this.search);
+
+  products = linkedSignal(() =>
+    this.productsResource.hasValue() ? this.productsResource.value().products : [],
+  );
+
+  
+  
+  
   filteredProducts = computed(() => {
     return this.search()
       ? this.products().filter((p) =>
@@ -29,11 +37,11 @@ export class ProductsPage {
   });
 
   constructor() {
-    this.#productsService.getProducts().pipe(takeUntilDestroyed())
+/*     this.#productsService.getProducts().pipe(takeUntilDestroyed())
     .subscribe({
       next: (products) => this.products.set(products),
       error: (error) => console.error(error),
-    }).add(/* Finaly */);
+    }).add( console.log("Final countdown")); */
   }
 
   toggleImage() {
