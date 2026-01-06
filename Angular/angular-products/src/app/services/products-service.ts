@@ -8,7 +8,7 @@ import { ProductsResponse, SingleProductResponse } from '../interfaces/responses
   providedIn: 'root',
 })
 export class ProductsService {
-  #productsUrl = 'https://api.fullstackpro.es/products-example/products';
+  #productsUrl = 'products';
   #http = inject(HttpClient);
 
   getProductsResource(search: Signal<string>) {
