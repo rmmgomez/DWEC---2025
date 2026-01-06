@@ -2,13 +2,11 @@ import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, sig
 import { Product } from '../interfaces/product';
 import { FormsModule } from '@angular/forms';
 import { ProductItem } from '../product-item/product-item';
-import { ProductForm } from '../product-form/product-form';
 import { ProductsService } from '../services/products-service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'products-page',
-  imports: [FormsModule, ProductItem, ProductForm],
+  imports: [FormsModule, ProductItem],
   templateUrl: './products-page.html',
   styleUrl: './products-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

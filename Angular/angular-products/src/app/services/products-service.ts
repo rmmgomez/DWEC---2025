@@ -8,37 +8,29 @@ import { ProductsResponse, SingleProductResponse } from '../interfaces/responses
   providedIn: 'root',
 })
 export class ProductsService {
-  #productsUrl = 'products';
-  #http = inject(HttpClient);
+  readonly #url = 'products';
+  readonly #http = inject(HttpClient);
 
   getProductsResource(search: Signal<string>) {
     return httpResource<ProductsResponse>(() => {
       const urlSearchParams = new URLSearchParams({ search: search() });
-      return `${this.#productsUrl}?${urlSearchParams.toString()}`;
+      return `${this.#url}?${urlSearchParams.toString()}`;
     });
   }
 
-  /* getProducts(): Observable<Product[]> {
-    return this.#http
-      .get<ProductsResponse>(`${this.#productsUrl}`)
-      .pipe(map((resp) => resp.products));
-  } */
-
   changeRating(idProduct: number, rating: number): Observable<void> {
-    return this.#http.put<void>(`${this.#productsUrl}/${idProduct}/rating`, {
+    return this.#http.put<void>(`${this.#url}/${idProduct}/rating`, {
       rating: rating,
     });
   }
 
   insertProduct(product: Product): Observable<Product> {
-    return this.#http.post<SingleProductResponse>(this.#productsUrl, product).pipe(
-      map((resp) => resp.product),
-      /* tap(() => this.productsResource.reload()), // Recarga los productos del resource */
-    );
+    return this.#http
+      .post<SingleProductResponse>(this.#url, product)
+      .pipe(map((resp) => resp.product));
   }
 
   deleteProduct(id: number): Observable<void> {
-    return this.#http
-      .delete<void>(`${this.#productsUrl}/${id}`);
+    return this.#http.delete<void>(`${this.#url}/${id}`);
   }
 }
