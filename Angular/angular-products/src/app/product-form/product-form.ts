@@ -3,9 +3,8 @@ import {
   Component,
   DestroyRef,
   inject,
-  output,
 } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Product } from '../interfaces/product';
 import { EncodeBase64Directive } from '../directives/encode-base64-directive';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

@@ -4,7 +4,7 @@ import { ProductForm } from './product-form/product-form';
 import { ProductsPage } from './products-page/products-page';
 
 export const routes: Routes = [
-  { path: 'products',    
+  { path: 'products',
     children: [
        { path: '', title: 'Productos | Angular Products', component: ProductsPage },
        { path: 'add', title: 'Añadir producto | Angular Products', component: ProductForm },

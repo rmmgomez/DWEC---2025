@@ -11,6 +11,10 @@ export class ProductsService {
   readonly #url = 'products';
   readonly #http = inject(HttpClient);
 
+  getProductIdResource(id: Signal<number>) {
+    return httpResource<SingleProductResponse>(() => `${this.#url}/${id()}`);
+  }
+  
   getProductsResource(search: Signal<string>) {
     return httpResource<ProductsResponse>(() => {
       const urlSearchParams = new URLSearchParams({ search: search() });

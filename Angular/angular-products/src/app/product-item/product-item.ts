@@ -5,10 +5,11 @@ import { DatePipe, UpperCasePipe } from '@angular/common';
 import { StarRating } from '../star-rating/star-rating';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProductsService } from '../services/products-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'product-item',
-  imports: [IntlCurrencyPipe, DatePipe, UpperCasePipe, StarRating],
+  imports: [IntlCurrencyPipe, DatePipe, UpperCasePipe, StarRating, RouterLink],
   templateUrl: './product-item.html',
   styleUrl: './product-item.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
