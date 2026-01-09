@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, DestroyRef, effect, inject, input, numberAttribute } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ProductsService } from '../services/products-service';
-import { StarRating } from "../star-rating/star-rating";
-import { IntlCurrencyPipe } from "../pipes/intl-currency-pipe";
+import { StarRating } from "../../shared/star-rating/star-rating";
+import { IntlCurrencyPipe } from "../../shared/pipes/intl-currency-pipe";
 import { DatePipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
+import { ProductsService } from '../services/products-service';
 
 @Component({
   selector: 'product-detail',

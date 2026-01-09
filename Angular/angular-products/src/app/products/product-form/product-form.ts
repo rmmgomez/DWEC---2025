@@ -6,8 +6,9 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../interfaces/product';
-import { EncodeBase64Directive } from '../directives/encode-base64-directive';
+import { EncodeBase64Directive } from '../../shared/directives/encode-base64-directive';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CanComponentDeactivate } from '../../shared/guards/leave-page-guard';
 import { ProductsService } from '../services/products-service';
 
 @Component({
@@ -17,10 +18,10 @@ import { ProductsService } from '../services/products-service';
   styleUrl: './product-form.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductForm {
+export class ProductForm implements CanComponentDeactivate{
   #productsService = inject(ProductsService);
   #destroyRef = inject(DestroyRef);
-
+saved = false;
   newProduct: Product = {
     id: 0,
     description: '',
@@ -35,7 +36,11 @@ export class ProductForm {
       .insertProduct(this.newProduct)
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(() => {
+        this.saved = true;
         this.newProduct.imageUrl = ''; // La imagen también (no está vinculada al formulario)
       });
+  }
+  canDeactivate() {
+    return this.saved || confirm('¿Quieres abandonar la página?. Los cambios se perderán...');
   }
 }
