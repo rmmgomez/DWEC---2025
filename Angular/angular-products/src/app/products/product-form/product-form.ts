@@ -4,16 +4,18 @@ import {
   DestroyRef,
   inject,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Product } from '../interfaces/product';
-import { EncodeBase64Directive } from '../../shared/directives/encode-base64-directive';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
+import { EncodeBase64Directive } from '../../shared/directives/encode-base64-directive';
 import { CanComponentDeactivate } from '../../shared/guards/leave-page-guard';
+import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
+import { MinDate } from '../../shared/directives/min-date';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'product-form',
-  imports: [FormsModule, EncodeBase64Directive],
+  imports: [FormsModule, EncodeBase64Directive, MinDate, DatePipe],
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
