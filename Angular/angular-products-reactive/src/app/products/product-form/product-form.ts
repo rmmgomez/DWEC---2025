@@ -7,10 +7,11 @@ import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
 import { Router } from '@angular/router';
 import { minDateValidator } from '../../shared/directives/min-date';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'product-form',
-  imports: [ReactiveFormsModule, EncodeBase64Directive],
+  imports: [ReactiveFormsModule, EncodeBase64Directive, DatePipe],
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,12 +20,13 @@ export class ProductForm implements CanComponentDeactivate {
   #productsService = inject(ProductsService);
   #destroyRef = inject(DestroyRef);
   saved = false;
+  protected readonly today = new Date().toISOString().split('T')[0];
   #fb = inject(NonNullableFormBuilder);
 
   productForm = this.#fb.group({
     description: ['', [Validators.required, Validators.minLength(5)]],
     price: [0, [Validators.required, Validators.min(1)]],
-    available: ['', [Validators.required]],
+    available: ['', [Validators.required, minDateValidator(this.today )]],
     imageUrl: ['', [Validators.required]],
   });
   imageBase64 = '';
@@ -46,7 +48,10 @@ export class ProductForm implements CanComponentDeactivate {
       });
   }
   canDeactivate() {
-    return this.saved || confirm('¿Quieres abandonar la página?. Los cambios se perderán...');
+    return (
+      this.saved || this.productForm.pristine ||
+      confirm('¿Quieres abandonar la página?. Los cambios se perderán...')
+    );
   }
   constructor() {
 /*     this.productForm.get('description')?.setValue('Para el editar formulario'); */

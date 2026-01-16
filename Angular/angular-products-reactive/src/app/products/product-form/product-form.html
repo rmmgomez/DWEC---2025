@@ -59,6 +59,9 @@
           @if (availableModel.errors?.['required']) {
             <div class="invalid-feedback">Available cannot be empty</div>
           }
+          @if (availableModel.errors?.['minDate']) {
+            <div class="invalid-feedback">Available cannot be before {{today | date:'dd/MM/yyyy'}}</div>
+          }
         </div>
       </label>
       <label class="mb-3 row">
