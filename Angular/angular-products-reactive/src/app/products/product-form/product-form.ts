@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EncodeBase64Directive } from '../../shared/directives/encode-base64-directive';
 import { CanComponentDeactivate } from '../../shared/guards/leave-page-guard';
 import { Product } from '../interfaces/product';
@@ -21,14 +21,20 @@ export class ProductForm implements CanComponentDeactivate {
   #destroyRef = inject(DestroyRef);
   saved = false;
   protected readonly today = new Date().toISOString().split('T')[0];
-  #fb = inject(NonNullableFormBuilder);
+  productForm = new FormGroup({
+    description: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    price: new FormControl(0, [Validators.required, Validators.min(1)]),
+    available: new FormControl('', [Validators.required, minDateValidator(this.today )]),
+    image: new FormControl('',[Validators.required])
+  });
+/*   #fb = inject(NonNullableFormBuilder); */
 
-  productForm = this.#fb.group({
+/*   productForm = this.#fb.group({
     description: ['', [Validators.required, Validators.minLength(5)]],
     price: [0, [Validators.required, Validators.min(1)]],
     available: ['', [Validators.required, minDateValidator(this.today )]],
     imageUrl: ['', [Validators.required]],
-  });
+  }); */
   imageBase64 = '';
   #route = inject(Router);
 
