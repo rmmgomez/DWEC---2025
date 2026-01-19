@@ -6,10 +6,11 @@ import { EncodeBase64Directive } from '../../shared/directives/encode-base64-dir
 import { CanComponentDeactivate } from '../../shared/guards/leave-page-guard';
 import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
+import { minDate } from '../../shared/directives/min-date';
 
 @Component({
   selector: 'product-form',
-  imports: [FormField, EncodeBase64Directive, DatePipe],
+  imports: [FormField, EncodeBase64Directive],
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,6 +39,7 @@ export class ProductForm implements CanComponentDeactivate {
         `You must enter at least ${5 - context.value().length} characters more`,
     });
     min(schemaPath.price, 0.01, { message: 'Price cannot be 0 or negative' });
+    minDate(schemaPath.available, new Date().toISOString().slice(0, 10));
   });
   imageField = form(signal(''), field => {
     required(field, { message: 'You must choose an image file' });
@@ -57,6 +59,6 @@ export class ProductForm implements CanComponentDeactivate {
     );
   }
   constructor() {
-/*     this.productForm.get('description')?.setValue('Para el editar formulario'); */
+   /*  this.productForm.description().setControlValue('Valor inicial dado en el constructor'); */
   }
 }

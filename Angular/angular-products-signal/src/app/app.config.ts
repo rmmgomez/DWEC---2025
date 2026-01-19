@@ -22,7 +22,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding(), withPreloading(PreloadAllModules)),
     provideHttpClient(withInterceptors([baseUrlInterceptor,authInterceptor])),
     provideSignalFormsConfig({
-      classes: NG_STATUS_CLASSES,
+      classes: {
+        ...NG_STATUS_CLASSES,
+        'is-valid': ({state}) => state().touched() && state().valid(),
+        'is-invalid': ({state}) => state().touched() && state().invalid()
+      }
     }),
   ]
 };
