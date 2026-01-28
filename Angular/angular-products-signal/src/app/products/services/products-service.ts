@@ -17,6 +17,7 @@ export class ProductsService {
   
   getProductsSearchResource(search: Signal<string>) {
     const queryParams = computed(() => new URLSearchParams({ search: search() }).toString());
+    console.log(search + " Otra más");
     return httpResource<ProductsResponse>(() => `products?${queryParams()}`);
   }
 
