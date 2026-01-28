@@ -5,6 +5,8 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { baseUrlInterceptor } from './shared/interceptors/base-url-interceptor';
 import { authInterceptor } from './shared/interceptors/auth-interceptor';
 import { provideSignalFormsConfig, SignalFormsConfig } from '@angular/forms/signals';
+import { provideGoogleId } from './auth/google-login/google-login.config';
+import { provideFacebookId } from './auth/facebook-login/facebook-login.config';
 export const NG_STATUS_CLASSES: SignalFormsConfig['classes'] = {
   'ng-touched': ({state}) => state().touched(),
   'ng-untouched': ({state}) => !state().touched(),
@@ -28,5 +30,8 @@ export const appConfig: ApplicationConfig = {
         'is-invalid': ({state}) => state().touched() && state().invalid()
       }
     }),
+    provideGoogleId('889410115200-1a2pni66elk4qfjit3l2od1n5lhndlld.apps.googleusercontent.com'),
+    provideFacebookId('2951779481699999', 'v24.0')
   ]
 };
+
